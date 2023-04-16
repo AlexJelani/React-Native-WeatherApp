@@ -3,9 +3,11 @@ import {
   Text,
   SafeAreaView,
   ImageBackground,
-  StatusBar
+  StatusBar,
+  View
 } from 'react-native'
 import React from 'react'
+import { Feather } from '@expo/vector-icons';
 
 const City = () => {
   return (
@@ -14,8 +16,18 @@ const City = () => {
         source={require('../../assets/city-background.jpg')}
         style={styles.imageLayout}
       >
-        <Text style={styles.cityName}>London</Text>
-        <Text style={styles.countryName}>UK</Text>
+        <Text style={[styles.cityName, styles.cityText]}>London</Text>
+        <Text style={[styles.countryName, styles.cityText]}>UK</Text>
+         <View style={styles.populationWrapper}>
+            <Feather name={'user'} size={50} color={'red'} />
+            <Text style={styles.populationText}>8000</Text>
+         </View>
+         <View>
+            <Feather/>
+            <Text></Text>
+            <Feather/>
+            <Text></Text>
+         </View>
       </ImageBackground>
     </SafeAreaView>
   )
@@ -32,17 +44,27 @@ const styles = StyleSheet.create({
     flex: 1
   },
   cityName: {
+    fontSize: 40
+  },
+  countryName: {
+    fontSize: 30
+  },
+  cityText: {
     justifyContent: 'center',
     alignItems: 'center',
-    fontSize: 40,
     fontWeight: 'bold',
     color: '#fff'
   },
-  countryName: {
-    justifyContent: 'center',
+  populationWrapper: {
+    flexDirection: 'row',
     alignItems: 'center',
-    fontSize: 30,
+    justifyContent: 'center',
+    marginTop: 30
+  },
+  populationText: {
+    fontSize: 25,
+    color: 'red',
     fontWeight: 'bold',
-    color: '#fff'
+    marginLeft: 7.5
   }
 })
