@@ -8,6 +8,7 @@ import {
 } from 'react-native'
 import React from 'react'
 import { Feather } from '@expo/vector-icons';
+import IconText from '../components/IconText';
 
 const City = () => {
   return (
@@ -19,8 +20,7 @@ const City = () => {
         <Text style={[styles.cityName, styles.cityText]}>London</Text>
         <Text style={[styles.countryName, styles.cityText]}>UK</Text>
          <View style={styles.populationWrapper}>
-            <Feather name={'user'} size={50} color={'red'} />
-            <Text style={styles.populationText}>8000</Text>
+            <IconText iconName={'user'} bodyText={'8000'} iconColor={'red'} bodyTextStyles={styles.populationText}/>
          </View>
          <View style={styles.riseSetWrapper}>
             <Feather name={'sunrise'} size={50} color={'yellow'}/>
@@ -64,7 +64,6 @@ const styles = StyleSheet.create({
   populationText: {
     fontSize: 25,
     color: 'red',
-    fontWeight: 'bold',
     marginLeft: 7.5
   },
   riseSetWrapper: {
@@ -76,6 +75,5 @@ const styles = StyleSheet.create({
   riseSetText:{
     fontSize: 25,
     color: 'orange',
-    fontWeight: 'bold',
   }
 })
