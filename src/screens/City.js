@@ -7,8 +7,8 @@ import {
   View
 } from 'react-native'
 import React from 'react'
-import { Feather } from '@expo/vector-icons';
-import IconText from '../components/IconText';
+import { Feather } from '@expo/vector-icons'
+import IconText from '../components/IconText'
 
 const City = () => {
   return (
@@ -19,15 +19,29 @@ const City = () => {
       >
         <Text style={[styles.cityName, styles.cityText]}>London</Text>
         <Text style={[styles.countryName, styles.cityText]}>UK</Text>
-         <View style={styles.populationWrapper}>
-            <IconText iconName={'user'} bodyText={'8000'} iconColor={'red'} bodyTextStyles={styles.populationText}/>
-         </View>
-         <View style={styles.riseSetWrapper}>
-            <Feather name={'sunrise'} size={50} color={'yellow'}/>
-            <Text style={styles.riseSetText}>10:46:58am</Text>
-            <Feather name={'sunset'} size={50} color={'yellow'}/>
-            <Text style={styles.riseSetText}>17:28:15pm</Text>
-         </View>
+        <View style={styles.populationWrapper}>
+          <IconText
+            iconName={'user'}
+            bodyText={'9000'}
+            iconColor={'red'}
+            bodyTextStyles={styles.populationText}
+          />
+        </View>
+        <View style={styles.riseSetWrapper}>
+          <IconText
+            iconName={'sunrise'}
+            bodyText={'10:46:58am'}
+            iconColor={'white'}
+            bodyTextStyles={styles.riseSetText}
+          />
+          <IconText
+            iconName={'sunset'}
+            bodyText={'17:28:15pm'}
+            iconColor={'white'}
+            bodyTextStyles={styles.riseSetText}
+          />
+         
+        </View>
       </ImageBackground>
     </SafeAreaView>
   )
@@ -53,7 +67,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     fontWeight: 'bold',
-    color: '#fff'
+    color: '#fff',
+    textAlign: 'center',
   },
   populationWrapper: {
     flexDirection: 'row',
@@ -72,8 +87,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     marginTop: 30
   },
-  riseSetText:{
+  riseSetText: {
     fontSize: 25,
-    color: 'orange',
+    color: 'orange'
   }
 })
