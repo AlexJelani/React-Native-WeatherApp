@@ -15,13 +15,13 @@ const useGetWeather = () => {
         setError('Permission to access location was denied.');
         return;
       }
-
+  
       const location = await Location.getCurrentPositionAsync({});
       setLat(location.coords.latitude);
       setLon(location.coords.longitude);
-
+  
       const res = await fetch(
-        `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${process.env.WEATHER_API_KEY}`
+        `http://api.openweathermap.org/data/2.5/forecast?lat=${location.coords.latitude}&lon=${location.coords.longitude}&appid=${process.env.WEATHER_API_KEY}`
       );
       const data = await res.json();
       setWeather(data);
@@ -31,6 +31,7 @@ const useGetWeather = () => {
       setLoading(false);
     }
   };
+  
 
   useEffect(() => {
     fetchWeatherData();
