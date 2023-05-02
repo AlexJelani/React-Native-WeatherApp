@@ -4,10 +4,10 @@ import { Feather } from '@expo/vector-icons'
 import RowText from '../components/RowText'
 import { weatherType } from '../utilities/weatherType'
 
-const CurrentWeather = () => {
+const CurrentWeather = ({ weatherData }) => {
   const {
     container,
-    temp,
+    tempStyles,
     feels,
     highLowWrapper,
     highLow,
@@ -15,25 +15,35 @@ const CurrentWeather = () => {
     description,
     message,
     wrapper
-
   } = styles
+
+  const {
+    main: { temp, feels_like, temp_max, temp_min },
+    weather
+  } = weatherData
+
+  const weatherCondition = weather[0].main
   return (
-    <SafeAreaView style={wrapper}>
+    <SafeAreaView style={[
+      wrapper,
+      { backgroundColor:weatherType[weatherCondition].backgroundColor}
+      ]}
+      >
       <View style={container}>
-        <Feather name="sun" size={100} color="black" />
-        <Text style={temp}>6</Text>
-        <Text style={feels}>Feels like 8</Text>
+        <Feather name={weatherType[weatherCondition].icon} size={100} color="white" />
+        <Text style={tempStyles}>{temp}</Text>
+        <Text style={feels}>{`Feels like 8${feels_like}`}</Text>
         <RowText
-          messageOne={'High: 8 '}
-          messageTwo={'Low: 6'}
+          messageOne={`High: 8${temp_max} `}
+          messageTwo={`Low: 6${temp_min}`}
           containerStyles={highLowWrapper}
           messageOneStyles={highLow}
           messageTwoStyles={highLow}
         />
       </View>
       <RowText
-        messageOne={'Its sunny'}
-        messageTwo={weatherType['Thunderstorm'].message}
+        messageOne={weather[0].description}
+        messageTwo={weatherType[weatherCondition].message}
         containerStyles={bodyWrapper}
         messageOneStyles={description}
         messageTwoStyles={message}
@@ -54,7 +64,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
-  temp: {
+  tempStyles: {
     color: 'black',
     fontSize: 48
   },
@@ -84,3 +94,4 @@ const styles = StyleSheet.create({
 })
 
 export default CurrentWeather
+
