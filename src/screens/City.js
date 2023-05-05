@@ -9,36 +9,38 @@ import {
 import React from 'react'
 import { Feather } from '@expo/vector-icons'
 import IconText from '../components/IconText'
+import moment from 'moment'
 
-const City = () => {
+const City = ({weatherData}) => {
   const {container, cityName, cityText, countryName, populationWrapper, populationText, riseSetWrapper, riseSetText, rowLayout, imageLayout} = styles
+  const {name, country, population, sunrise, sunset} = weatherData
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground
         source={require('../../assets/city-background.jpg')}
         style={imageLayout}
       >
-        <Text style={[cityName, cityText]}>London</Text>
-        <Text style={[countryName, cityText]}>UK</Text>
+        <Text style={[cityName, cityText]}>{name}</Text>
+        <Text style={[countryName, cityText]}>{country}</Text>
         <View style={[populationWrapper, rowLayout]}>
           <IconText
             iconName={'user'}
-            bodyText={'9000'}
             iconColor={'red'}
+            bodyText={`Population: ${population}`}
             bodyTextStyles={populationText}
           />
         </View>
         <View style={[riseSetWrapper, rowLayout]}>
           <IconText
             iconName={'sunrise'}
-            bodyText={'10:46:58am'}
             iconColor={'white'}
+            bodyText={moment(sunrise).format('h:mm:ss a')}
             bodyTextStyles={riseSetText}
           />
           <IconText
             iconName={'sunset'}
-            bodyText={'17:28:15pm'}
             iconColor={'white'}
+            bodyText={moment(sunset).format('h:mm:ss a')}
             bodyTextStyles={riseSetText}
           />
          
