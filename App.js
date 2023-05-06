@@ -5,8 +5,7 @@ import Tabs from './src/components/Tabs';
 import useGetWeather from './hooks/useGetWeather';
 export default function App() {
   const { loading, error, weather } = useGetWeather();
-  console.log(loading, error, weather)
-  console.log(loading, error, weather)
+  
 
   if(weather && weather.list) {
     return (
