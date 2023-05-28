@@ -1,29 +1,31 @@
-import React from 'react';
-import { ActivityIndicator, View, StyleSheet } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import Tabs from './src/components/Tabs';
-import useGetWeather from './hooks/useGetWeather';
+import React from 'react'
+import { ActivityIndicator, View, StyleSheet } from 'react-native'
+import { NavigationContainer } from '@react-navigation/native'
+import Tabs from './src/components/Tabs'
+import useGetWeather from './hooks/useGetWeather'
+import ErrorItem from './src/components/ErrorItem'
 export default function App() {
-  const { loading, error, weather } = useGetWeather();
-  
+  const { loading, error, weather } = useGetWeather()
 
-  if(weather && weather.list) {
+  if (weather && weather.list && !loading) {
     return (
       <NavigationContainer>
-      <Tabs weather={weather} />
-    </NavigationContainer>
+        <Tabs weather={weather} />
+      </NavigationContainer>
     )
   }
 
   if (loading) {
     return (
       <View style={styles.container}>
-        <ActivityIndicator size={'large'} color={'blue'} />
+        {error ? (
+          <ErrorItem />
+        ) : (
+          <ActivityIndicator size={'large'} color={'blue'} />
+        )}
       </View>
-    );
+    )
   }
-
- 
 }
 const styles = StyleSheet.create({
   container: {
@@ -31,4 +33,3 @@ const styles = StyleSheet.create({
     flex: 1
   }
 })
-
